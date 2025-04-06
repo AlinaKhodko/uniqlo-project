@@ -7,10 +7,10 @@ from datetime import datetime
 import os
 
 # 📂 Paths
-CSV_PATH = 'data/uniqlo-products.csv'
+CSV_PATH = 'product-ids/uniqlo-products.csv'
 ID_PATH = 'product-ids/filtered-ids.txt'
 TARGET_ID_PATH = 'product-ids/target-ids.txt'
-OUTPUT_CSV = 'data/filtered-uniqlo-products.csv'
+OUTPUT_CSV = 'product-ids/filtered-uniqlo-products.csv'
 
 # 🧹 Load and clean product data
 df = pd.read_csv(CSV_PATH)
@@ -111,7 +111,7 @@ print(f"✅ Added {len(filtered_ids)} new IDs. Total now: {len(updated_ids)}")
 df.to_csv(CSV_PATH, index=False)
 print(f"💾 Updated dataset with metrics saved to {CSV_PATH}")
 
-save_or_append_df(df, './data/archive/uniqlo-raw-history.csv')
+save_or_append_df(df, 'product-ids/uniqlo-raw-history.csv')
 
 # 🔍 Filter rows by Product ID
 filtered_df = df[df['Product ID'].astype(str).isin(updated_ids)]
