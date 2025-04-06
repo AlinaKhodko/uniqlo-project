@@ -90,7 +90,7 @@ def classify_action(row):
 df['Action'] = df.apply(classify_action, axis=1)
 
 # 🎯 Select best products based on Action
-selected_actions = {'SUPER', 'GOOD DEAL', 'CHEAP BUT MID'}
+selected_actions = {'SUPER', 'GOOD DEAL'} #, 'CHEAP BUT MID'}
 filtered_ids = df[df['Action'].isin(selected_actions)]['Product ID'].dropna().astype(str).tolist()
 
 # 📄 Load existing interested IDs
