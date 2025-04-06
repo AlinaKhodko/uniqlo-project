@@ -4,8 +4,8 @@ const path = require('path');
 const csv = require('csv-parser');
 const { parse } = require('json2csv');
 
-const INPUT_CSV = 'data/filtered-uniqlo-products.csv';
-const OUTPUT_CSV = 'data/uniqlo-with-sizes.csv';
+const INPUT_CSV = 'product-ids/filtered-uniqlo-products.csv';
+const OUTPUT_CSV = 'product-ids/uniqlo-with-sizes.csv';
 const N = 100; // Number of products to process
 
 async function extractColorAndSizes(url, browser) {
