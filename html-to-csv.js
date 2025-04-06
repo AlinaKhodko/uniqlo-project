@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-const filePath = path.join(__dirname, '/data/uniqlo-raw.html');
+const filePath = path.join(__dirname, 'data/uniqlo-raw.html');
 const html = fs.readFileSync(filePath, 'utf8');
 
 // ✅ Extract timestamp from HTML comment
