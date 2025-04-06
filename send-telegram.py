@@ -12,8 +12,8 @@ BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 
 # 📄 Paths
-CSV_PATH = '/data/sizes-filtered.csv'
-BLOCKED_PATH = '/product-ids/blocked_ids.json'
+CSV_PATH = 'data/sizes-filtered.csv'
+BLOCKED_PATH = 'product-ids/blocked_ids.json'
 
 
 # 🧠 Blocklist logic
