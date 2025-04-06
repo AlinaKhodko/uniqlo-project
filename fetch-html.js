@@ -13,7 +13,7 @@ const argv = yargs
   .option('output', {
     alias: 'o',
     type: 'string',
-    default: 'uniqlo-raw.html',
+    default: 'product-ids/uniqlo-raw.html',
     description: 'Path to save raw HTML'
   })
   .help()
