@@ -19,7 +19,8 @@ jobs:
         node-version: '20'
 
     - name: Install Node dependencies
-      run: npm init -y
+      run: |
+        npm init -y
         npm install puppeteer-core csv-parser json2csv dotenv
         
     - name: Setup Python
