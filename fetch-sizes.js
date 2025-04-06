@@ -77,8 +77,7 @@ async function extractColorAndSizes(url, browser) {
   });
 
   const browser = await puppeteer.launch({
-    headless: 'new', // 👈 modern invisible mode (no GUI)
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    headless: 'new', // or true
     args: ['--window-size=1400,1000']
   });
 
