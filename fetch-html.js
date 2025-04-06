@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer-core'); // or 'puppeteer'
+const puppeteer = require('puppeteer'); // or 'puppeteer'
 const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
@@ -22,7 +22,6 @@ const argv = yargs
 (async () => {
   const browser = await puppeteer.launch({
     headless: 'new',
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     args: ['--window-size=1400,1000']
   });
 
