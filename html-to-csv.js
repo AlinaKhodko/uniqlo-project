@@ -85,6 +85,6 @@ $('.fr-ec-product-tile__end').each((_, el) => {
 
 // 💾 Write to CSV
 const csv = rows.map(row => row.map(val => `"${val}"`).join(',')).join('\n');
-fs.writeFileSync('./data/uniqlo-products.csv', csv, 'utf8');
+fs.writeFileSync('product-ids/uniqlo-products.csv', csv, 'utf8');
 
 console.log(`✅ Saved ${rows.length - 1} products to uniqlo-products.csv with timestamp`);
