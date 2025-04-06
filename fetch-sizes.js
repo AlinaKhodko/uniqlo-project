@@ -78,7 +78,7 @@ async function extractColorAndSizes(url, browser) {
 
   const browser = await puppeteer.launch({
     headless: 'new', // or true
-    args: ['--window-size=1400,1000']
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--window-size=1400,1000']
   });
 
   for (let i = 0; i < Math.min(N, rows.length); i++) {
