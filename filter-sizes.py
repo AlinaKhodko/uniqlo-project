@@ -4,7 +4,7 @@ import re
 import os
 
 # ✅ Default sizes to keep
-DEFAULT_SIZES = {"M", "L", "XL", "27INCH", "28INCH", "29INCH"}
+DEFAULT_SIZES = {"M", "L", "XL", "26INCH", "27INCH", "28INCH", "29INCH", "39-42"}
 
 def clean_and_extract_sizes(size_str):
     if pd.isna(size_str) or str(size_str).strip().lower() == 'unavailable':
