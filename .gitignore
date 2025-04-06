@@ -20,12 +20,6 @@ env/
 ENV/
 .venv.bak/
 
-# === Data & Output Files ===
-data/*.html
-data/*.csv
-*.csv
-*.xlsx
-
 # === Logs and Temp ===
 *.log
 *.tmp
