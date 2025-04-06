@@ -21,7 +21,7 @@ jobs:
     - name: Install Node dependencies
       run: |
         npm init -y
-        npm install puppeteer csv-parser json2csv dotenv
+        npm install puppeteer csv-parser json2csv dotenv cheerio
         
     - name: Setup Python
       uses: actions/setup-python@v4
