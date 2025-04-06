@@ -7,10 +7,10 @@ from datetime import datetime
 import os
 
 # 📂 Paths
-CSV_PATH = '/data/uniqlo-products.csv'
-ID_PATH = '/product-ids/filtered-ids.txt'
-TARGET_ID_PATH = '/product-ids/target-ids.txt'
-OUTPUT_CSV = '/data/filtered-uniqlo-products.csv'
+CSV_PATH = 'data/uniqlo-products.csv'
+ID_PATH = 'product-ids/filtered-ids.txt'
+TARGET_ID_PATH = 'product-ids/target-ids.txt'
+OUTPUT_CSV = 'data/filtered-uniqlo-products.csv'
 
 # 🧹 Load and clean product data
 df = pd.read_csv(CSV_PATH)
