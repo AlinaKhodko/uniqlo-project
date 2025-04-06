@@ -52,7 +52,7 @@ def main(input_csv, output_csv, wanted_sizes):
     final_count = len(df_filtered)
 
     df_filtered.to_csv(output_csv, index=False)
-    save_or_append_df(df_filtered, './data/archive/verified-history.csv')
+    save_or_append_df(df_filtered, 'data/archive/verified-history.csv')
 
     print(f"✅ Kept {final_count} rows (from {initial_count}) based on size and discount ≥ 50%")
     print(f"📁 Saved to: {output_csv}")
