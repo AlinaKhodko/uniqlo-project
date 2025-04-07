@@ -77,9 +77,10 @@ def create_message_from_csv(csv_path, max_items=5):
         reviews = row.get('Reviews', '')
         action = row.get('Action', '')
         sizes = row.get('Available Sizes', '')
+        promo = row.get('Promo Price', '')
 
         message += f"\n🔗 [{name}]({url})"
-        message += f"\n💸 *-{int(discount)}%* | ⭐ {rating} ({int(float(reviews))} reviews)"
+        message += f"\n💸 *-{int(discount)}%* | 🪙 {promo} | ⭐ {rating} ({int(float(reviews))} reviews)"
         if sizes and sizes != 'Unavailable':
             message += f"\n🧵 Sizes: `{sizes}`"
         if action:
