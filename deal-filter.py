@@ -11,7 +11,7 @@ import json
 CSV_PATH = 'product-ids/uniqlo-products.csv'
 ID_PATH = 'product-ids/filtered-ids.txt'
 TARGET_ID_PATH = 'product-ids/target-ids.txt'
-BLOCK_PATH = 'product-ids/product-ids/blocked_ids.json'
+BLOCK_PATH = 'product-ids/blocked_ids.json'
 
 OUTPUT_CSV = 'product-ids/filtered-uniqlo-products.csv'
 
