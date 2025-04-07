@@ -5,12 +5,16 @@ from pathlib import Path
 import plotly.express as px
 from datetime import datetime
 import os
+import json
 
 # 📂 Paths
 CSV_PATH = 'product-ids/uniqlo-products.csv'
 ID_PATH = 'product-ids/filtered-ids.txt'
 TARGET_ID_PATH = 'product-ids/target-ids.txt'
+BLOCK_PATH = 'product-ids/product-ids/blocked_ids.json'
+
 OUTPUT_CSV = 'product-ids/filtered-uniqlo-products.csv'
+
 
 # 🧹 Load and clean product data
 df = pd.read_csv(CSV_PATH)
@@ -90,8 +94,16 @@ def classify_action(row):
 df['Action'] = df.apply(classify_action, axis=1)
 
 # 🎯 Select best products based on Action
-selected_actions = {'SUPER', 'GOOD DEAL'} #, 'CHEAP BUT MID'}
+selected_actions = {'SUPER', 'GOOD DEAL', 'CHEAP BUT MID'}
 filtered_ids = df[df['Action'].isin(selected_actions)]['Product ID'].dropna().astype(str).tolist()
+
+# 🧱 Load block list
+blocked_ids = {}
+if Path(BLOCK_PATH).exists():
+    with open(BLOCK_PATH, 'r') as f:
+        blocked_ids = json.load(f)
+print(blocked_ids )      
+filtered_ids = [pid for pid in filtered_ids if blocked_ids.get(pid) is not True]
 
 # 📄 Load existing interested IDs
 existing_ids = set()
