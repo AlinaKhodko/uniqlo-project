@@ -60,14 +60,14 @@ def create_message_from_csv(csv_path, max_items=5):
 
     # 📆 Timestamp from Fetched At
     try:
-        timestamp = pd.to_datetime(df['Fetched At'].dropna().iloc[0]) + timedelta(hours=3)
+        timestamp = pd.to_datetime(df['Fetched At'].dropna().iloc[0])
         date_str = timestamp.strftime('%d %b %Y • %H:%M')
     except:
         date_str = 'Unknown Time'
 
     df = df.sort_values(by='Discount %', ascending=False).head(max_items)
 
-    message = f"*{date_str})*\n"
+    message = f"*🛍️ UNIQLO Digest ({date_str})*\n"
 
     for _, row in df.iterrows():
         name = row['Product Name']
