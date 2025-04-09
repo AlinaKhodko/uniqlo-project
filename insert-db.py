@@ -14,7 +14,7 @@ supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_KEY"))
 DF_PRODUCTS = pd.read_csv("product-ids/uniqlo-products.csv")
 DF_SIZES = pd.read_csv("product-ids/uniqlo-with-sizes.csv")
 df_pre = pd.merge(DF_PRODUCTS, DF_SIZES[["Product ID", "Product URL", "Available Sizes"]], on=["Product ID", "Product URL"], how="left")
-df = df_pre["Available Sizes"].fillna("Unknown")
+df_pre["Available Sizes"] = df_pre["Available Sizes"].fillna("Unknown")
 
 def extract_color_code(url: str) -> str:
     try:
