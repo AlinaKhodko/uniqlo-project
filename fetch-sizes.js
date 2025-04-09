@@ -9,14 +9,14 @@ const OUTPUT_CSV = 'product-ids/uniqlo-with-sizes.csv';
 const N = 100; // Number of products to process
 
 async function extractColorAndSizes(url, browser) {
-  const page = await browser.newPage(); // <-- NEW page for every URL
+  const page = await browser.newPage();
   await page.setViewport({ width: 1400, height: 1000 });
   await page.setUserAgent(
-    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
   );
 
   try {
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 20000 });
 
     // ✅ Accept cookies
     try {
@@ -27,13 +27,20 @@ async function extractColorAndSizes(url, browser) {
 
     // ✅ Extract selected color
     const color = await page.evaluate(() => {
-      const el = Array.from(document.querySelectorAll('p'))
-        .find(p => p.textContent?.trim().startsWith('Farbe:'));
-      if (!el) return null;
-      const text = el.textContent.trim(); // e.g., "Farbe: 09 SCHWARZ"
-      return text.split(' ').slice(2).join(' '); // extract "SCHWARZ"
-    });
+    const el = Array.from(document.querySelectorAll('p'))
+      .find(p => p.textContent?.trim().startsWith('Farbe:'));
+    if (!el) return null;
+    const text = el.textContent.trim(); // e.g., "Farbe: 09 SCHWARZ"
+    const parts = text.split(' ');
+    const code = parts[1]; // e.g., "09"
+    const name = parts.slice(2).join(' '); // e.g., "SCHWARZ"
 
+    const pathMatch = window.location.pathname.match(/products\/[^/]+\/(\w+)/);
+    const pathPart = pathMatch ? pathMatch[1] : '00'; // fallback to 00 if not found
+
+    return `${pathPart}${code}-${name.toUpperCase()}`; // e.g., "0009-SCHWARZ"
+    } );
+    
     // ✅ Extract available sizes
     await page.waitForSelector('#product-size-picker input[aria-label]', { timeout: 10000 });
     const sizes = await page.evaluate(() => {
