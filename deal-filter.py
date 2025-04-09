@@ -97,7 +97,7 @@ df['Action'] = df.apply(classify_action, axis=1)
 selected_actions = {'SUPER', 'GOOD DEAL', 'CHEAP BUT MID'}
 filtered_ids = df[df['Action'].isin(selected_actions)]['Product ID'].dropna().astype(str).tolist()
 
-if False:
+if True:
 # 🧱 Load block list, don't want to use it know and here
     blocked_ids = {}
     if Path(BLOCK_PATH).exists():
