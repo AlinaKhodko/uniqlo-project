@@ -72,9 +72,10 @@ const browser = await puppeteer.launch({
 
   console.log('✅ Finished scrolling');
 
-  // 📆 Add timestamp
-  const now = new Date().toISOString();
-  const timestampComment = `<!-- Fetched on ${now} -->\n`;
+  // 📆 Add timestamp (adjusted for UTC+3)
+  const now = new Date();
+  now.setHours(now.getHours() + 3); // ⏱ shift by 3 hours
+  const timestampComment = `<!-- Fetched on ${now.toISOString()} -->\n`;
 
   const html = await page.content();
   fs.writeFileSync(path.resolve(argv.output), timestampComment + html, 'utf8');

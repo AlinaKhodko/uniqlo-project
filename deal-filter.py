@@ -97,13 +97,14 @@ df['Action'] = df.apply(classify_action, axis=1)
 selected_actions = {'SUPER', 'GOOD DEAL', 'CHEAP BUT MID'}
 filtered_ids = df[df['Action'].isin(selected_actions)]['Product ID'].dropna().astype(str).tolist()
 
-# 🧱 Load block list
-blocked_ids = {}
-if Path(BLOCK_PATH).exists():
-    with open(BLOCK_PATH, 'r') as f:
-        blocked_ids = json.load(f)
-print(blocked_ids )      
-filtered_ids = [pid for pid in filtered_ids if blocked_ids.get(pid) is not True]
+if False:
+# 🧱 Load block list, don't want to use it know and here
+    blocked_ids = {}
+    if Path(BLOCK_PATH).exists():
+        with open(BLOCK_PATH, 'r') as f:
+            blocked_ids = json.load(f)
+    print(blocked_ids )      
+    filtered_ids = [pid for pid in filtered_ids if blocked_ids.get(pid) is not True]
 
 # 📄 Load existing interested IDs
 existing_ids = set()
