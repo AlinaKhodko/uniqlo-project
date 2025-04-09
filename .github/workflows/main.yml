@@ -45,7 +45,7 @@ jobs:
         node fetch-html.js --url "https://www.uniqlo.com/de/de/feature/sale/women" --output product-ids/uniqlo-raw.html
         node html-to-csv.js
         python deal-filter.py
-        node fetch-sizes.js
+        node fetch-sizes.js || echo "⚠️ fetch-sizes.js failed, continuing..."
         python filter-sizes.py --input product-ids/uniqlo-with-sizes.csv --output product-ids/sizes-filtered.csv
         python send-telegram.py
       env:
