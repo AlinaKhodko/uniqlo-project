@@ -9,14 +9,14 @@ const OUTPUT_CSV = 'product-ids/uniqlo-with-sizes.csv';
 const N = 100; // Number of products to process
 
 async function extractColorAndSizes(url, browser) {
-  const page = await browser.newPage();
+  const page = await browser.newPage(); // <-- NEW page for every URL
   await page.setViewport({ width: 1400, height: 1000 });
   await page.setUserAgent(
-  'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
   );
 
   try {
-    await page.goto(url, { waitUntil: 'networkidle2', timeout: 20000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
 
     // ✅ Accept cookies
     try {
@@ -34,9 +34,8 @@ async function extractColorAndSizes(url, browser) {
       return text.split(' ').slice(2).join(' '); // extract "SCHWARZ"
     });
 
-    // ✅ Extract sizes (only available)
+    // ✅ Extract available sizes
     await page.waitForSelector('#product-size-picker input[aria-label]', { timeout: 10000 });
-
     const sizes = await page.evaluate(() => {
       return Array.from(document.querySelectorAll('#product-size-picker input[aria-label]'))
         .map(input => {
@@ -51,16 +50,14 @@ async function extractColorAndSizes(url, browser) {
         .filter(Boolean);
     });
 
-    await page.close();
-
     console.log(`🟡 Color: ${color || 'Unknown'}`);
     console.log(`✅ Sizes: ${sizes.join(', ') || 'None'}`);
-
     return color && sizes.length > 0 ? `${color}: ${sizes.join(', ')}` : null;
   } catch (err) {
     console.error(`❌ Failed to scrape ${url}: ${err.message}`);
-    await page.close();
     return null;
+  } finally {
+    await page.close(); // ✅ Always close the page after each URL
   }
 }
 
@@ -78,7 +75,7 @@ async function extractColorAndSizes(url, browser) {
 
   const browser = await puppeteer.launch({
     headless: 'new', // or true
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--window-size=1400,1000']
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--window-size=1400,1000']
   });
 
   for (let i = 0; i < Math.min(N, rows.length); i++) {
