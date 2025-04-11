@@ -2,15 +2,11 @@ name: UNIQLO Automation
 
 on:
   schedule:
-    # Run at xx:30 every hour from 03:30 to 21:30 UTC (05:30 to 23:30 CEST)
-    - cron: '30 3-21 * * *'
+    # Run at xx:30 every hour from 03:30 to 20:30 UTC 
+    - cron: '30 3-20 * * *'
 
-    # Run at xx:00 every hour from 04:00 to 22:00 UTC (06:00 to 00:00 CEST)
-    - cron: '0 4-22 * * *'
-
-    # Run at midnight and 00:30 CEST (22:00 and 22:30 UTC)
-    - cron: '0 22 * * *'
-    - cron: '30 22 * * *'
+    # Run at xx:00 every hour from 04:00 to 21:00 UTC 
+    - cron: '0 4-21 * * *'
 
   workflow_dispatch:
 
