@@ -48,7 +48,7 @@ const browser = await puppeteer.launch({
   // 🔁 Scroll loop
   let previousCount = 0;
   let stableCounter = 0;
-  const maxStable = 1;
+  const maxStable = 6;
   const maxScrolls = 100;
 
   for (let i = 0; i < maxScrolls && stableCounter < maxStable; i++) {
