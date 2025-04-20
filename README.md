@@ -61,4 +61,14 @@ The automation runs:
     └── workflows/
         └── main.yml           # ⚙️ GitHub Actions
 ```
+
+⚠️ Disclaimer
+This project is not affiliated with, endorsed by, or in any way officially connected with UNIQLO or its affiliates.
+All product names, logos, and brands are property of their respective owners.
+
+The tool respects robots.txt directives and does not access restricted or user-authenticated areas of the website.
+No personal data is collected, stored, or processed.
+
+Use of this tool is intended strictly for personal, lawful, and non-commercial purposes.
+
 MIT
