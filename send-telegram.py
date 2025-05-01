@@ -37,7 +37,7 @@ def is_blocked(product_id, sizes_str, blocklist):
 
 
 # ✍️ Build message
-def create_message_from_csv(csv_path, max_items=5):
+def create_message_from_csv(csv_path, max_items=20):
     if not Path(csv_path).exists():
         return "❌ No product data found."
 
