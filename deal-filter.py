@@ -90,16 +90,17 @@ def classify_action(row):
     elif r_q < 0.3 and d_q < 0.3:
         return 'AVOID'
     else:
-        if r_q >= 0.8 and d_q < 0.4:
-            return 'TOP BUT EXPENSIVE'
-        elif 0.5 <= r_q < 0.8 and d_q >= 0.8:
-            return 'FAIR DEAL'
-        elif 0.5 <= r_q < 0.8 and d_q < 0.8:
-            return 'OK DEAL'   # clearer alternative to 'MID MID'
-        elif r_q < 0.5 and d_q < 0.9:
-            return 'LOW QUALITY'  # clearer alternative to 'NOT TOP'
-        else:
-            return 'NEUTRAL'
+        return 'NEUTRAL'
+        #if r_q >= 0.8 and d_q < 0.4:
+        #    return 'TOP BUT EXPENSIVE'
+        #elif 0.5 <= r_q < 0.8 and d_q >= 0.8:
+        #    return 'FAIR DEAL'
+        #elif 0.5 <= r_q < 0.8 and d_q < 0.8:
+        #    return 'OK DEAL'   # clearer alternative to 'MID MID'
+        #elif r_q < 0.5 and d_q < 0.9:
+        #    return 'LOW QUALITY'  # clearer alternative to 'NOT TOP'
+        #else:
+        #    return 'NEUTRAL'
             
 df['Action'] = df.apply(classify_action, axis=1)
 
