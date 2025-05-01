@@ -76,20 +76,6 @@ def classify_action(row):
     r_q = row['Review_Score_Quantile']
     d_q = row['Discount_Quantile']
 
-    if r_q >= 0.9 and d_q >= 0.80:
-        return 'SUPER'
-    elif r_q >= 0.9 and 0.5 <= d_q < 0.80:
-        return 'WAIT FOR SALE'
-    elif r_q >= 0.80 and d_q >= 0.80:
-        return 'GOOD DEAL'
-    elif r_q >= 0.80 and 0.4 <= d_q < 0.80:
-        return 'DECENT'
-    elif r_q < 0.5 and d_q >= 0.9:
-        return 'CHEAP BUT MID'
-    elif r_q < 0.3 and d_q < 0.3:
-        return 'AVOID'
-    else:
-        return 'NEUTRAL'
 
     if r_q >= 0.9 and d_q >= 0.80:
         return 'SUPER'
