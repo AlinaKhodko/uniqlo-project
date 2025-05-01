@@ -91,6 +91,30 @@ def classify_action(row):
     else:
         return 'NEUTRAL'
 
+    if r_q >= 0.9 and d_q >= 0.80:
+        return 'SUPER'
+    elif r_q >= 0.9 and 0.5 <= d_q < 0.80:
+        return 'WAIT FOR SALE'
+    elif r_q >= 0.80 and d_q >= 0.80:
+        return 'GOOD DEAL'
+    elif r_q >= 0.80 and 0.4 <= d_q < 0.80:
+        return 'DECENT'
+    elif r_q < 0.5 and d_q >= 0.9:
+        return 'CHEAP BUT MID'  # if clearer
+    elif r_q < 0.3 and d_q < 0.3:
+        return 'AVOID'
+    else:
+        if r_q >= 0.8 and d_q < 0.4:
+            return 'TOP BUT EXPENSIVE'
+        elif 0.5 <= r_q < 0.8 and d_q >= 0.8:
+            return 'FAIR DEAL'
+        elif 0.5 <= r_q < 0.8 and d_q < 0.8:
+            return 'OK DEAL'   # clearer alternative to 'MID MID'
+        elif r_q < 0.5 and d_q < 0.9:
+            return 'LOW QUALITY'  # clearer alternative to 'NOT TOP'
+        else:
+            return 'NEUTRAL'
+            
 df['Action'] = df.apply(classify_action, axis=1)
 
 # 🎯 Select best products based on Action
