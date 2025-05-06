@@ -85,7 +85,7 @@ def classify_action(row):
         return 'GOOD DEAL'
     elif r_q >= 0.80 and 0.4 <= d_q < 0.80:
         return 'DECENT'
-    elif 0.6 <= r_q < 0.8 and d_q >= 0.8:
+    elif 0.7 <= r_q < 0.8 and d_q >= 0.8:
         return 'CHEAP UPPER MID'
     elif r_q < 0.5 and d_q >= 0.9:
         return 'CHEAP BUT MID'  # if clearer
@@ -107,7 +107,7 @@ def classify_action(row):
 df['Action'] = df.apply(classify_action, axis=1)
 
 # 🎯 Select best products based on Action
-selected_actions = {'SUPER', 'GOOD DEAL', 'CHEAP BUT MID', 'CHEAP UPPER MID'}
+selected_actions = {'SUPER', 'GOOD DEAL', 'CHEAP UPPER MID'}
 filtered_ids = df[df['Action'].isin(selected_actions)]['Product ID'].dropna().astype(str).tolist()
 
 if True:
