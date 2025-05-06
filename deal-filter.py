@@ -85,7 +85,7 @@ def classify_action(row):
         return 'GOOD DEAL'
     elif r_q >= 0.80 and 0.4 <= d_q < 0.80:
         return 'DECENT'
-    elif 0.5 <= r_q < 0.8 and d_q >= 0.6:
+    elif 0.6 <= r_q < 0.8 and d_q >= 0.8:
         return 'CHEAP UPPER MID'
     elif r_q < 0.5 and d_q >= 0.9:
         return 'CHEAP BUT MID'  # if clearer
